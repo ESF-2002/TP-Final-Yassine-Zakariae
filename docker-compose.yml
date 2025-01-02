@@ -36,7 +36,7 @@ services:
       context: .
       dockerfile: ./setup/Doc/Dockerfile
     ports:
-      - "4000:3000"
+      - "4000:4000"
     networks:
       - app-network
     volumes:
