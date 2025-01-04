@@ -11,12 +11,12 @@ on:
 
 jobs:
   test-and-lint:
-    if: ${{ github.event_name != 'workflow_call' }}
+    if: ${{ github.event_name != 'workflow_call' && github.event.inputs.SKIPTEST != 'TRUE' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -42,7 +42,7 @@ jobs:
       - name: Install dependencies for Docs
         working-directory: ./docs
         run: yarn install
-
+      
       - name: Lint Docs
         working-directory: ./docs
         run: |
