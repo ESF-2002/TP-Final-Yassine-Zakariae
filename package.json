@@ -1,5 +1,19 @@
 {
   "dependencies": {
     "pg": "^8.13.1"
-  }
+  },
+  "name": "2024-tp-final-devops",
+  "description": "Start here by reading the project requirements in `docs/blog/2024-12-08-assignement/index.md`.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
