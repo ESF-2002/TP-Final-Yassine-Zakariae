@@ -14,6 +14,7 @@ services:
       - vote-api
     networks:
       - app-network
+
   vote-api:
     build:
       context: ./vote-api
@@ -27,6 +28,7 @@ services:
       - db
     networks:
       - app-network
+
   docs:
     build:
       context: ./docs
@@ -36,6 +38,7 @@ services:
       - "4000:4000"
     networks:
       - app-network
+
   db:
     image: postgres:17
     environment:
@@ -64,5 +67,6 @@ services:
 networks:
   app-network:
     driver: bridge
+
 volumes:
   postgres_data:

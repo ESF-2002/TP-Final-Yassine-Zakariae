@@ -2,7 +2,7 @@
 FROM node:23-alpine AS base
 
 WORKDIR /usr/src/app
-COPY --chown=nobody:nobody ./ ./
+COPY --chown=nobody:nobody ./docs ./
 RUN yarn install
 FROM base AS development
 USER nobody
@@ -11,7 +11,7 @@ CMD ["yarn", "start"]
 FROM base AS builder
 RUN yarn run build
 FROM nginx:stable-alpine AS production
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./setup/Doc/nginx.conf /etc/nginx/nginx.conf
 WORKDIR /usr/share/nginx/html
 COPY --chown=nobody:nobody --from=builder /usr/src/app/build ./
 RUN chown -R nobody:nobody /usr/share/nginx/html \
