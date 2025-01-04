@@ -22,4 +22,3 @@ It is written in **Go** because go is fun.
 `docs` is the documentation of the project.
 
 It is built with **[Docusaurus](https://docusaurus.io/)** and is a simple static website with no backend.
-

@@ -1,0 +1,6 @@
+- **Branch Management** : Structure des branches Gitflow.
+- **Commit Messages** : Utilisation de Gitmoji pour les messages de commit.
+- **Pull Requests** : Processus de validation des PRs.
+- **CI/CD** : Automatisation des tests et déploiement continu.
+- **Rollbacks** : Rétablissement de l'état stable si besoin.
+- **Contributing** : Guide de contribution au projet.

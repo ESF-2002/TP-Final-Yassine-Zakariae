@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "@testing-library/react": "^16.1.0",
+    "pg": "^8.13.1",
+    "vitest": "^2.2.0"
+  },
+  "name": "2024-tp-final-devops",
+  "description": "Start here by reading the project requirements in `docs/blog/2024-12-08-assignement/index.md`.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test:playwright": "playwright test",
+    "test:vitest": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.51.0"
+  }
+}

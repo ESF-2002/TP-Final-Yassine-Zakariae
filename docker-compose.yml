@@ -1,0 +1,71 @@
+version: '3.9'
+services:
+  web-client:
+    build:
+      context: ./web-client
+      dockerfile: ../setup/Dockerfile
+      target: development
+    volumes:
+      - ./web-client:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
+      - VOTE_API_BASE_URL=http://vote-api:8080
+    ports:
+      - "3000:3000"
+    depends_on:
+      - vote-api
+    networks:
+      - app-network
+
+
+  vote-api:
+    build:
+      context: ./vote-api
+      dockerfile: ../setup/API/Dockerfile
+      target: development
+    volumes:
+      - ./vote-api:/usr/src/app
+    environment:
+      - PG_URL=postgresql://neondb_owner:vz7XbCVfHe8A@ep-little-dust-a5g3mx3a.us-east-2.aws.neon.tech/neondb?sslmode=require
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+
+  docs:
+    build:
+      context: ./docs
+      dockerfile: ../setup/Doc/Dockerfile
+      target: development
+    volumes:
+      - ./docs:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "4000:4000"
+    networks:
+      - app-network
+      
+
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: vote_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
