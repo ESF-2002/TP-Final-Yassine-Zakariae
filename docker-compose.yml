@@ -2,8 +2,8 @@ version: '3.9'
 services:
   web-client:
     build:
-      context: .
-      dockerfile: ./setup/Dockerfile
+      context: ./web-client
+      dockerfile: ../setup/Dockerfile
       target: development
     volumes:
       - ./web-client:/usr/src/app
@@ -21,8 +21,8 @@ services:
 
   vote-api:
     build:
-      context: .
-      dockerfile: ./setup/API/Dockerfile
+      context: ./vote-api
+      dockerfile: ../setup/API/Dockerfile
       target: development
     volumes:
       - ./vote-api:/usr/src/app
@@ -38,8 +38,8 @@ services:
 
   docs:
     build:
-      context: .
-      dockerfile: ./setup/Doc/Dockerfile
+      context: ./docs
+      dockerfile: ../setup/Doc/Dockerfile
       target: development
     volumes:
       - ./docs:/usr/src/app

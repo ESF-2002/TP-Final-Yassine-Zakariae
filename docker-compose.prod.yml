@@ -2,8 +2,8 @@ version: '3.9'
 services:
   web-client:
     build:
-      context: .
-      dockerfile: ./setup/Dockerfile
+      context: ./web-client
+      dockerfile: ../setup/Dockerfile
       target: production
     environment:
       - NODE_ENV=production
@@ -16,8 +16,8 @@ services:
       - app-network
   vote-api:
     build:
-      context: .
-      dockerfile: ./setup/API/Dockerfile
+      context: ./vote-api
+      dockerfile: ../setup/API/Dockerfile
       target: production
     environment:
       - PG_URL=postgresql://neondb_owner:vz7XbCVfHe8A@ep-little-dust-a5g3mx3a.us-east-2.aws.neon.tech/neondb?sslmode=require
@@ -29,8 +29,8 @@ services:
       - app-network
   docs:
     build:
-      context: .
-      dockerfile: ./setup/Doc/Dockerfile
+      context: ./docs
+      dockerfile: ../setup/Doc/Dockerfile
       target: production
     ports:
       - "4000:4000"
@@ -48,6 +48,19 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./setup/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - web-client
+      - docs
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: bridge
